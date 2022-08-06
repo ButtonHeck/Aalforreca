@@ -19,9 +19,6 @@
 [submodule "Engine/vendor/assimp"]
 	path = Engine/vendor/assimp
 	url = https://github.com/assimp/assimp.git
-[submodule "Engine/vendor/qu3e"]
-	path = Engine/vendor/qu3e
-	url = https://github.com/RandyGaul/qu3e.git
 [submodule "Engine/vendor/doctest"]
 	path = Engine/vendor/doctest
 	url = https://github.com/doctest/doctest.git
