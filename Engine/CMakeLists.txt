@@ -4,6 +4,7 @@ project(AalforrecaEngine LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+unset("QT_QMAKE_EXECUTABLE")
 
 set(SOURCE_FILES "src/Core/application.cpp")
 set(HEADER_FILES "include/Aalforreca/Core/application.h")
@@ -62,6 +63,12 @@ endif()
 if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/yaml-cpp/CMakeLists.txt")
     message(FATAL_ERROR "yaml-cpp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
+
+option(GLFW_BUILD_DOCS OFF)
+option(ASSIMP_BUILD_TESTS OFF)
+option(ASSIMP_INSTALL OFF)
+option(SPDLOG_BUILD_TESTING OFF)
+option(YAML_CPP_BUILD_TOOLS OFF)
 
 add_subdirectory(vendor/GLFW)
 add_subdirectory(vendor/Glad)
