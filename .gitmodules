@@ -22,3 +22,6 @@
 [submodule "Engine/vendor/doctest"]
 	path = Engine/vendor/doctest
 	url = https://github.com/doctest/doctest.git
+[submodule "Engine/vendor/qu3e"]
+	path = Engine/vendor/qu3e
+	url = https://github.com/ButtonHeck/qu3e.git
