@@ -13,6 +13,8 @@ aux_source_directory(vendor/ImGui IMGUI_SRC)
 aux_source_directory(vendor/ImGuizmo IMGUIZMO_SRC)
 aux_source_directory(vendor/stb_image STB_IMAGE_SRC)
 
+include_directories(include/Aalforreca)
+
 add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES}
     ${IMGUI_SRC}
     ${IMGUIZMO_SRC}
@@ -21,7 +23,6 @@ add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES}
     ${STB_IMAGE_SRC}
 )
 
-include_directories(include/Aalforreca)
 
 # Download all the submodules
 find_package(Git QUIET)
@@ -74,15 +75,15 @@ add_subdirectory(vendor/yaml-cpp)
 target_include_directories(${PROJECT_NAME}
     PRIVATE vendor/GLFW/include
     PRIVATE vendor/Glad/include
-    PUBLIC  vendor/ImGui
-    PUBLIC  vendor/ImGuizmo
+    PRIVATE vendor/ImGui
+    PRIVATE vendor/ImGuizmo
     PRIVATE vendor/assimp/include
     PRIVATE vendor/doctest
     PRIVATE vendor/entt/include
-    PUBLIC  vendor/glm
+    PRIVATE vendor/glm
     PRIVATE vendor/qu3e/src
-    PUBLIC  vendor/spdlog/include
-    PUBLIC  vendor/stb_image
+    PRIVATE vendor/spdlog/include
+    PRIVATE vendor/stb_image
     PRIVATE vendor/yaml-cpp/include
 )
 
@@ -100,26 +101,11 @@ target_link_directories(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME}
-    glfw
-    glad
-    assimp
-    doctest
-    qu3e
-    spdlog
-    yaml-cpp
+    PRIVATE glfw
+    PRIVATE glad
+    PRIVATE assimp
+    PRIVATE doctest
+    PRIVATE qu3e
+    PRIVATE spdlog
+    PRIVATE yaml-cpp
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
