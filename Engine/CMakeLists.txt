@@ -26,6 +26,11 @@ add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES}
     ${STB_IMAGE_SRC}
 )
 
+option(AALFORRECA_BUILD_TESTS ON)
+if(AALFORRECA_BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
+
 
 # Download all the submodules
 find_package(Git QUIET)
@@ -87,7 +92,6 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE vendor/ImGui
     PRIVATE vendor/ImGuizmo
     PRIVATE vendor/assimp/include
-    PRIVATE vendor/doctest
     PRIVATE vendor/entt/include
     PRIVATE vendor/glm
     PRIVATE vendor/qu3e/src
@@ -102,7 +106,6 @@ target_link_directories(${PROJECT_NAME}
     PRIVATE vendor/ImGui
     PRIVATE vendor/ImGuizmo
     PRIVATE vendor/assimp/lib
-    PRIVATE vendor/doctest/parts
     PRIVATE vendor/qu3e/src
     PRIVATE vendor/spdlog
     PRIVATE vendor/stb_image
@@ -113,7 +116,6 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE glfw
     PRIVATE glad
     PRIVATE assimp
-    PRIVATE doctest
     PRIVATE qu3e
     PRIVATE spdlog
     PRIVATE yaml-cpp
