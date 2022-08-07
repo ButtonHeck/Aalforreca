@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.16)
 
 project(AalforrecaEngine VERSION 0.1)
 
@@ -8,17 +8,29 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 unset("QT_QMAKE_EXECUTABLE")
 
-set(SOURCE_FILES "src/Core/application.cpp")
-set(HEADER_FILES "include/Aalforreca/Core/application.h")
-set(IMGUI_IMPL_DIR "vendor/ImGui/backends")
+set(SOURCE_FILES
+    "${PROJECT_SOURCE_DIR}/src/Core/application.cpp"
+)
+set(HEADER_FILES
+    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/application.h"
+)
+set(PCH_SOURCE_FILE "${PROJECT_SOURCE_DIR}/src/alrcpch.cpp")
+set(IMGUI_IMPL_DIR "${PROJECT_SOURCE_DIR}/vendor/ImGui/backends")
 
 aux_source_directory(vendor/ImGui IMGUI_SRC)
 aux_source_directory(vendor/ImGuizmo IMGUIZMO_SRC)
 aux_source_directory(vendor/stb_image STB_IMAGE_SRC)
 
-include_directories(include/Aalforreca ${PROJECT_BINARY_DIR})
+include_directories(
+    "${PROJECT_SOURCE_DIR}/include/Aalforreca"
+    "${PROJECT_SOURCE_DIR}/src"
+    ${PROJECT_BINARY_DIR}
+)
 
-add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES}
+add_library(${PROJECT_NAME} STATIC
+    ${HEADER_FILES}
+    ${PCH_SOURCE_FILE}
+    ${SOURCE_FILES}
     ${IMGUI_SRC}
     ${IMGUIZMO_SRC}
     ${IMGUI_IMPL_DIR}/imgui_impl_opengl3.cpp
@@ -29,6 +41,10 @@ add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES}
 option(AALFORRECA_BUILD_TESTS ON)
 if(AALFORRECA_BUILD_TESTS)
     add_subdirectory(tests)
+endif()
+
+if(COMMAND target_precompile_headers)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/src/alrcpch.h")
 endif()
 
 
