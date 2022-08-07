@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(AalforrecaEngine LANGUAGES CXX)
+project(AalforrecaEngine VERSION 0.1)
+
+configure_file(AalforrecaEngineConfig.h.in AalforrecaEngineConfig.h)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,7 +16,7 @@ aux_source_directory(vendor/ImGui IMGUI_SRC)
 aux_source_directory(vendor/ImGuizmo IMGUIZMO_SRC)
 aux_source_directory(vendor/stb_image STB_IMAGE_SRC)
 
-include_directories(include/Aalforreca)
+include_directories(include/Aalforreca ${PROJECT_BINARY_DIR})
 
 add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES}
     ${IMGUI_SRC}

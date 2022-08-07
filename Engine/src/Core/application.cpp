@@ -16,12 +16,14 @@
 #include <yaml-cpp/yaml.h>
 #include <assimp/Importer.hpp>
 #include <q3.h>
+#include <AalforrecaEngineConfig.h>
 
 void Aalforreca::testFunction()
 {
     glm::vec4 clearColor{0.0f, 0.2f, 0.2f, 1.0f};
     spdlog::info("spdlog version {}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
     spdlog::info("Hello world! {0:d}", clearColor.length());
+    spdlog::info("Engine version {}.{}", AALFORRECA_ENGINE_VERSION_MAJOR, AALFORRECA_ENGINE_VERSION_MINOR);
 
     if (!glfwInit())
         return;
