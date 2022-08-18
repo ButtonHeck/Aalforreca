@@ -16,6 +16,8 @@
 #include <assimp/Importer.hpp>
 #include <q3.h>
 #include <AalforrecaEngineConfig.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 void Aalforreca::testFunction()
 {
@@ -23,6 +25,20 @@ void Aalforreca::testFunction()
     spdlog::info("spdlog version {}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
     spdlog::info("Hello world! {0:d}", clearColor.length());
     spdlog::info("Engine version {}.{}", AALFORRECA_ENGINE_VERSION_MAJOR, AALFORRECA_ENGINE_VERSION_MINOR);
+
+    auto alcDevice = alcOpenDevice(nullptr);
+    if (!alcDevice)
+        throw("Failed to get sound device");
+
+    auto alcContext = alcCreateContext(alcDevice, nullptr);
+    if (!alcContext)
+        throw("Failed to set sound context");
+
+    if (!alcMakeContextCurrent(alcContext))
+        throw("Failed to make context current");
+
+    const std::string openalVersion = alGetString(AL_VERSION);
+    spdlog::info("OpenAL-soft version {}", openalVersion);
 
     if (!glfwInit())
         return;

@@ -15,4 +15,9 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/../Engine/include"
 )
 
-target_link_libraries(${PROJECT_NAME} AalforrecaEngine)
+target_link_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}/Engine/vendor/openal-soft")
+
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE AalforrecaEngine
+    PRIVATE OpenAL::OpenAL
+)

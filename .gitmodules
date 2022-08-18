@@ -25,3 +25,6 @@
 [submodule "Engine/vendor/qu3e"]
 	path = Engine/vendor/qu3e
 	url = https://github.com/ButtonHeck/qu3e.git
+[submodule "Engine/vendor/openal-soft"]
+	path = Engine/vendor/openal-soft
+	url = https://github.com/kcat/openal-soft.git

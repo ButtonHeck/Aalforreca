@@ -72,10 +72,13 @@ if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/assimp/CMakeLists.txt")
     message(FATAL_ERROR "assimp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
 if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/doctest/CMakeLists.txt")
-    message(FATAL_ERROR "assimp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
+    message(FATAL_ERROR "doctest submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
 if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/glm/CMakeLists.txt")
     message(FATAL_ERROR "glm submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
+endif()
+if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/openal-soft/CMakeLists.txt")
+    message(FATAL_ERROR "openal-soft submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
 if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/qu3e/CMakeLists.txt")
     message(FATAL_ERROR "qu3e submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
@@ -98,6 +101,7 @@ add_subdirectory(vendor/Glad)
 add_subdirectory(vendor/assimp)
 add_subdirectory(vendor/doctest)
 add_subdirectory(vendor/glm)
+add_subdirectory(vendor/openal-soft)
 add_subdirectory(vendor/qu3e)
 add_subdirectory(vendor/spdlog)
 add_subdirectory(vendor/yaml-cpp)
@@ -114,6 +118,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE vendor/spdlog/include
     PRIVATE vendor/stb_image
     PRIVATE vendor/yaml-cpp/include
+    PRIVATE vendor/openal-soft/include
 )
 
 target_link_directories(${PROJECT_NAME}
@@ -126,6 +131,7 @@ target_link_directories(${PROJECT_NAME}
     PRIVATE vendor/spdlog
     PRIVATE vendor/stb_image
     PRIVATE vendor/yaml-cpp/src
+    PRIVATE vendor/openal-soft
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -135,4 +141,5 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE qu3e
     PRIVATE spdlog
     PRIVATE yaml-cpp
+    PRIVATE OpenAL::OpenAL
 )
