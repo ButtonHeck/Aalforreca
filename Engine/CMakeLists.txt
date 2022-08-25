@@ -74,6 +74,9 @@ endif()
 if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/doctest/CMakeLists.txt")
     message(FATAL_ERROR "doctest submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
+if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/freetype/CMakeLists.txt")
+    message(FATAL_ERROR "freetype submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
+endif()
 if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/glm/CMakeLists.txt")
     message(FATAL_ERROR "glm submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
@@ -100,6 +103,7 @@ add_subdirectory(vendor/GLFW)
 add_subdirectory(vendor/Glad)
 add_subdirectory(vendor/assimp)
 add_subdirectory(vendor/doctest)
+add_subdirectory(vendor/freetype)
 add_subdirectory(vendor/glm)
 add_subdirectory(vendor/openal-soft)
 add_subdirectory(vendor/qu3e)
@@ -113,6 +117,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE vendor/ImGuizmo
     PRIVATE vendor/assimp/include
     PRIVATE vendor/entt/include
+    PRIVATE vendor/freetype/include
     PRIVATE vendor/glm
     PRIVATE vendor/qu3e/src
     PRIVATE vendor/spdlog/include
@@ -127,6 +132,7 @@ target_link_directories(${PROJECT_NAME}
     PRIVATE vendor/ImGui
     PRIVATE vendor/ImGuizmo
     PRIVATE vendor/assimp/lib
+    PRIVATE vendor/freetype
     PRIVATE vendor/qu3e/src
     PRIVATE vendor/spdlog
     PRIVATE vendor/stb_image
@@ -138,6 +144,7 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE glfw
     PRIVATE glad
     PRIVATE assimp
+    PRIVATE freetype
     PRIVATE qu3e
     PRIVATE spdlog
     PRIVATE yaml-cpp

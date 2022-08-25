@@ -18,13 +18,30 @@
 #include <AalforrecaEngineConfig.h>
 #include <AL/al.h>
 #include <AL/alc.h>
+#include <freetype/freetype.h>
 
 void Aalforreca::testFunction()
 {
     glm::vec4 clearColor{0.0f, 0.2f, 0.2f, 1.0f};
+    spdlog::info("Engine version {}.{}", AALFORRECA_ENGINE_VERSION_MAJOR, AALFORRECA_ENGINE_VERSION_MINOR);
     spdlog::info("spdlog version {}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
     spdlog::info("Hello world! {0:d}", clearColor.length());
-    spdlog::info("Engine version {}.{}", AALFORRECA_ENGINE_VERSION_MAJOR, AALFORRECA_ENGINE_VERSION_MINOR);
+
+    FT_Library ftLibrary;
+    bool ftError;
+    ftError = FT_Init_FreeType(&ftLibrary);
+    if (ftError)
+    {
+        spdlog::error("Error initializing Freetype library");
+    }
+    else
+    {
+        FT_Int ftMajorVersion;
+        FT_Int ftMinorVersion;
+        FT_Int ftPatch;
+        FT_Library_Version(ftLibrary, &ftMajorVersion, &ftMinorVersion, &ftPatch);
+        spdlog::info("Freetype version {}.{}.{}", ftMajorVersion, ftMinorVersion, ftPatch);
+    }
 
     auto alcDevice = alcOpenDevice(nullptr);
     if (!alcDevice)

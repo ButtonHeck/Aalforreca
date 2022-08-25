@@ -28,3 +28,6 @@
 [submodule "Engine/vendor/openal-soft"]
 	path = Engine/vendor/openal-soft
 	url = https://github.com/kcat/openal-soft.git
+[submodule "Engine/vendor/freetype"]
+	path = Engine/vendor/freetype
+	url = https://github.com/freetype/freetype.git
