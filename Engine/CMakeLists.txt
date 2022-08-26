@@ -8,11 +8,19 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 unset("QT_QMAKE_EXECUTABLE")
 
-set(SOURCE_FILES
-    "${PROJECT_SOURCE_DIR}/src/Core/application.cpp"
+
+# Sources and includes
+include_directories(
+    "${PROJECT_SOURCE_DIR}/include/Aalforreca"
+    "${PROJECT_SOURCE_DIR}/src"
+    ${PROJECT_BINARY_DIR}
 )
 set(HEADER_FILES
     "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/application.h"
+)
+
+set(SOURCE_FILES
+    "${PROJECT_SOURCE_DIR}/src/Core/application.cpp"
 )
 set(PCH_SOURCE_FILE "${PROJECT_SOURCE_DIR}/src/alrcpch.cpp")
 set(IMGUI_IMPL_DIR "${PROJECT_SOURCE_DIR}/vendor/ImGui/backends")
@@ -21,12 +29,8 @@ aux_source_directory(vendor/ImGui IMGUI_SRC)
 aux_source_directory(vendor/ImGuizmo IMGUIZMO_SRC)
 aux_source_directory(vendor/stb_image STB_IMAGE_SRC)
 
-include_directories(
-    "${PROJECT_SOURCE_DIR}/include/Aalforreca"
-    "${PROJECT_SOURCE_DIR}/src"
-    ${PROJECT_BINARY_DIR}
-)
 
+# Target
 add_library(${PROJECT_NAME} STATIC
     ${HEADER_FILES}
     ${PCH_SOURCE_FILE}
@@ -38,6 +42,8 @@ add_library(${PROJECT_NAME} STATIC
     ${STB_IMAGE_SRC}
 )
 
+
+# Aalforreca options
 option(AALFORRECA_BUILD_TESTS ON)
 if(AALFORRECA_BUILD_TESTS)
     add_subdirectory(tests)
@@ -63,6 +69,7 @@ if (GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/../.git")
         endif()
     endif()
 endif()
+
 
 # check all the submodules
 if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/GLFW/CMakeLists.txt")
@@ -93,11 +100,17 @@ if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/yaml-cpp/CMakeLists.txt")
     message(FATAL_ERROR "yaml-cpp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
 
+
+# 3rd-party stuff
 option(GLFW_BUILD_DOCS OFF)
 option(ASSIMP_BUILD_TESTS OFF)
 option(ASSIMP_INSTALL OFF)
 option(SPDLOG_BUILD_TESTING OFF)
 option(YAML_CPP_BUILD_TOOLS OFF)
+option(ALSOFT_EXAMPLES OFF)
+option(ALSOFT_INSTALL_AMBDEC_PRESETS OFF)
+option(ALSOFT_INSTALL_EXAMPLES OFF)
+option(ALSOFT_UTILS OFF)
 
 add_subdirectory(vendor/GLFW)
 add_subdirectory(vendor/Glad)
@@ -110,6 +123,8 @@ add_subdirectory(vendor/qu3e)
 add_subdirectory(vendor/spdlog)
 add_subdirectory(vendor/yaml-cpp)
 
+
+# Dependencies
 target_include_directories(${PROJECT_NAME}
     PRIVATE vendor/GLFW/include
     PRIVATE vendor/Glad/include
