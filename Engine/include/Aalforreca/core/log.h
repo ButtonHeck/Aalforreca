@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Aalforreca/Core/pointers.h"
+#include "Aalforreca/core/pointers.h"
 
 #include <spdlog/spdlog.h>
 

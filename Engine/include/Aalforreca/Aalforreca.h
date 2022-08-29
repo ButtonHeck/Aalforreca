@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Aalforreca/Core/pointers.h"
-#include "Aalforreca/Core/application.h"
-#include "Aalforreca/Core/log.h"
+#include "Aalforreca/core/pointers.h"
+#include "Aalforreca/core/application.h"
+#include "Aalforreca/core/log.h"

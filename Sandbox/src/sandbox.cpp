@@ -1,5 +1,5 @@
 #include <Aalforreca/Aalforreca.h>
-#include <Aalforreca/Core/entry_point.h>
+#include <Aalforreca/core/entry_point.h>
 
 class Sandbox : public Aalforreca::Application
 {

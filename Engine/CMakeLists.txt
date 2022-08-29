@@ -10,24 +10,28 @@ unset("QT_QMAKE_EXECUTABLE")
 
 
 # Sources and includes
+set(ALRC_HEADERS "${PROJECT_SOURCE_DIR}/include")
+set(ALRC_SOURCES "${PROJECT_SOURCE_DIR}/src")
+set(ALRC_VENDOR "${PROJECT_SOURCE_DIR}/vendor")
+
 include_directories(
-    "${PROJECT_SOURCE_DIR}/include"
-    "${PROJECT_SOURCE_DIR}/src"
+    ${ALRC_HEADERS}
+    ${ALRC_SOURCES}
     ${PROJECT_BINARY_DIR}
 )
 set(HEADER_FILES
-    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/application.h"
-    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/entry_point.h"
-    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/pointers.h"
-    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/log.h"
+    "${ALRC_HEADERS}/Aalforreca/core/application.h"
+    "${ALRC_HEADERS}/Aalforreca/core/entry_point.h"
+    "${ALRC_HEADERS}/Aalforreca/core/pointers.h"
+    "${ALRC_HEADERS}/Aalforreca/core/log.h"
 )
 
 set(SOURCE_FILES
-    "${PROJECT_SOURCE_DIR}/src/Core/application.cpp"
-    "${PROJECT_SOURCE_DIR}/src/Core/log.cpp"
+    "${ALRC_SOURCES}/core/application.cpp"
+    "${ALRC_SOURCES}/core/log.cpp"
 )
-set(PCH_SOURCE_FILE "${PROJECT_SOURCE_DIR}/src/alrcpch.cpp")
-set(IMGUI_IMPL_DIR "${PROJECT_SOURCE_DIR}/vendor/ImGui/backends")
+set(PCH_SOURCE_FILE "${ALRC_SOURCES}/alrcpch.cpp")
+set(IMGUI_IMPL_DIR "${ALRC_VENDOR}/ImGui/backends")
 
 aux_source_directory(vendor/ImGui IMGUI_SRC)
 aux_source_directory(vendor/ImGuizmo IMGUIZMO_SRC)
@@ -54,7 +58,7 @@ if(AALFORRECA_BUILD_TESTS)
 endif()
 
 if(COMMAND target_precompile_headers)
-    target_precompile_headers(${PROJECT_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/src/alrcpch.h")
+    target_precompile_headers(${PROJECT_NAME} PRIVATE "${ALRC_SOURCES}/alrcpch.h")
 endif()
 
 
@@ -76,31 +80,31 @@ endif()
 
 
 # check all the submodules
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/GLFW/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/GLFW/CMakeLists.txt")
     message(FATAL_ERROR "GLFW submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/assimp/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/assimp/CMakeLists.txt")
     message(FATAL_ERROR "assimp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/doctest/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/doctest/CMakeLists.txt")
     message(FATAL_ERROR "doctest submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/freetype/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/freetype/CMakeLists.txt")
     message(FATAL_ERROR "freetype submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/glm/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/glm/CMakeLists.txt")
     message(FATAL_ERROR "glm submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/openal-soft/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/openal-soft/CMakeLists.txt")
     message(FATAL_ERROR "openal-soft submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/qu3e/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/qu3e/CMakeLists.txt")
     message(FATAL_ERROR "qu3e submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/spdlog/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/spdlog/CMakeLists.txt")
     message(FATAL_ERROR "spdlog submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${PROJECT_SOURCE_DIR}/vendor/yaml-cpp/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR}/yaml-cpp/CMakeLists.txt")
     message(FATAL_ERROR "yaml-cpp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
 

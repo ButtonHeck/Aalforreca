@@ -1,5 +1,5 @@
 #include "alrcpch.h"
-#include "Aalforreca/Core/log.h"
+#include "Aalforreca/core/log.h"
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/basic_file_sink.h>
@@ -12,7 +12,7 @@ namespace Aalforreca
     void Log::init()
     {
         std::vector<spdlog::sink_ptr> logSinks;
-        logSinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+        logSinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>(spdlog::color_mode::automatic));
         logSinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>("Aalforreca.log", true));
 
         logSinks[0]->set_pattern("%^[%T] %n: %v%$");
