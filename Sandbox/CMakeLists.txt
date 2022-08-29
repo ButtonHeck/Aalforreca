@@ -12,7 +12,7 @@ include_directories(
 )
 
 set(SOURCE_FILES
-    "${PROJECT_SOURCE_DIR}/src/main.cpp"
+    "${PROJECT_SOURCE_DIR}/src/sandbox.cpp"
 )
 
 

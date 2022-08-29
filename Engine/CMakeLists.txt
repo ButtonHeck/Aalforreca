@@ -17,6 +17,7 @@ include_directories(
 )
 set(HEADER_FILES
     "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/application.h"
+    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/entry_point.h"
 )
 
 set(SOURCE_FILES
