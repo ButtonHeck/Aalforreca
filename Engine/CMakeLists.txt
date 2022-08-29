@@ -11,17 +11,20 @@ unset("QT_QMAKE_EXECUTABLE")
 
 # Sources and includes
 include_directories(
-    "${PROJECT_SOURCE_DIR}/include/Aalforreca"
+    "${PROJECT_SOURCE_DIR}/include"
     "${PROJECT_SOURCE_DIR}/src"
     ${PROJECT_BINARY_DIR}
 )
 set(HEADER_FILES
     "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/application.h"
     "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/entry_point.h"
+    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/pointers.h"
+    "${PROJECT_SOURCE_DIR}/include/Aalforreca/Core/log.h"
 )
 
 set(SOURCE_FILES
     "${PROJECT_SOURCE_DIR}/src/Core/application.cpp"
+    "${PROJECT_SOURCE_DIR}/src/Core/log.cpp"
 )
 set(PCH_SOURCE_FILE "${PROJECT_SOURCE_DIR}/src/alrcpch.cpp")
 set(IMGUI_IMPL_DIR "${PROJECT_SOURCE_DIR}/vendor/ImGui/backends")
@@ -136,7 +139,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE vendor/freetype/include
     PRIVATE vendor/glm
     PRIVATE vendor/qu3e/src
-    PRIVATE vendor/spdlog/include
+    PUBLIC  vendor/spdlog/include
     PRIVATE vendor/stb_image
     PRIVATE vendor/yaml-cpp/include
     PRIVATE vendor/openal-soft/include

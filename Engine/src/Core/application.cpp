@@ -1,5 +1,7 @@
 #include "alrcpch.h"
-#include "Core/application.h"
+#include "Aalforreca/Core/application.h"
+#include "Aalforreca/Core/log.h"
+#include <AalforrecaEngineConfig.h>
 
 namespace Aalforreca
 {
@@ -13,11 +15,22 @@ namespace Aalforreca
 
     Application::~Application()
     {
+        ALRC_CORE_INFO("Engine shutdown...");
     }
 
-    Application & Application::get()
+    Application & Application::app()
     {
         return *_app;
+    }
+
+    int Application::versionMajor()
+    {
+        return AALFORRECA_ENGINE_VERSION_MAJOR;
+    }
+
+    int Application::versionMinor()
+    {
+        return AALFORRECA_ENGINE_VERSION_MINOR;
     }
 
     int Application::exec()
@@ -28,5 +41,4 @@ namespace Aalforreca
 
         return 0;
     }
-
 }
