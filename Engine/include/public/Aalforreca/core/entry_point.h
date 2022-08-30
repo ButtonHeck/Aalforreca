@@ -4,7 +4,7 @@
 #include "Aalforreca/core/application.h"
 #include "Aalforreca/core/log.h"
 
-extern Aalforreca::Application * Aalforreca::createApplication();
+extern Aalforreca::Application* Aalforreca::createApplication();
 
 int main(int argc, char** argv)
 {

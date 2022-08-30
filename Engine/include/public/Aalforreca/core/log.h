@@ -11,8 +11,8 @@ namespace Aalforreca
     {
     public:
         static void init();
-        static Shared<spdlog::logger> & coreLogger();
-        static Shared<spdlog::logger> & clientLogger();
+        static Shared<spdlog::logger>& coreLogger();
+        static Shared<spdlog::logger>& clientLogger();
 
     private:
         static Shared<spdlog::logger> _coreLogger;

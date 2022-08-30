@@ -38,7 +38,7 @@ namespace Aalforreca
 #define EVENT_CLASS_TYPE(eventType) \
     static EventType staticType() { return EventType::eventType; } \
     virtual EventType type() const override { return staticType(); } \
-    virtual const char * name() const override { return #eventType; }
+    virtual const char* name() const override { return #eventType; }
 
 #define EVENT_CLASS_CATEGORY(category) \
     virtual int categoryFlags() const override { return category; }
@@ -49,7 +49,7 @@ namespace Aalforreca
         virtual ~Event() = default;
 
         virtual EventType type() const = 0;
-        virtual const char * name() const = 0;
+        virtual const char* name() const = 0;
         virtual int categoryFlags() const = 0;
         virtual std::string toString() const
         {
@@ -64,7 +64,7 @@ namespace Aalforreca
         bool handled = false;
     };
 
-    inline std::ostream & operator<<(std::ostream & os, const Event & event)
+    inline std::ostream& operator<<(std::ostream& os, const Event& event)
     {
         return os << event.toString();
     }
@@ -73,12 +73,12 @@ namespace Aalforreca
     class EventDispatcher
     {
     public:
-        EventDispatcher(Event & event)
+        EventDispatcher(Event& event)
             : _event(event)
         {}
 
         template<typename E, typename F>
-        bool dispatch(const F & func)
+        bool dispatch(const F& func)
         {
             if (_event.type() == E::staticType())
             {
@@ -89,6 +89,6 @@ namespace Aalforreca
         }
 
     private:
-        Event & _event;
+        Event& _event;
     };
 }

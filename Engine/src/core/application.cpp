@@ -5,7 +5,7 @@
 
 namespace Aalforreca
 {
-    Application * Application::_app = nullptr;
+    Application* Application::_app = nullptr;
 
     Application::Application()
         : _running(true)
@@ -18,7 +18,7 @@ namespace Aalforreca
         ALRC_CORE_INFO("Engine shutdown...");
     }
 
-    Application & Application::app()
+    Application& Application::app()
     {
         return *_app;
     }
