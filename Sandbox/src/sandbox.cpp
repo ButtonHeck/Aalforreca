@@ -6,10 +6,14 @@ class Sandbox : public Aalforreca::Application
 public:
     Sandbox()
         : Aalforreca::Application()
-    {}
+    {
+        ALRC_INFO("Sandbox start...");
+    }
 
     ~Sandbox()
-    {}
+    {
+        ALRC_INFO("Sandbox shutdown...");
+    }
 };
 
 Aalforreca::Application * Aalforreca::createApplication()

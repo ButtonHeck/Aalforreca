@@ -20,15 +20,16 @@ namespace Aalforreca
     };
 }
 
+#ifdef ALRC_USE_CORE_LOGGER
 #define ALRC_CORE_TRACE(...)    ::Aalforreca::Log::coreLogger()->trace(__VA_ARGS__)
 #define ALRC_CORE_INFO(...)     ::Aalforreca::Log::coreLogger()->info(__VA_ARGS__)
 #define ALRC_CORE_WARN(...)     ::Aalforreca::Log::coreLogger()->warn(__VA_ARGS__)
 #define ALRC_CORE_ERROR(...)    ::Aalforreca::Log::coreLogger()->error(__VA_ARGS__)
 #define ALRC_CORE_CRITICAL(...) ::Aalforreca::Log::coreLogger()->critical(__VA_ARGS__)
-
+#else
 #define ALRC_TRACE(...)         ::Aalforreca::Log::clientLogger()->trace(__VA_ARGS__)
 #define ALRC_INFO(...)          ::Aalforreca::Log::clientLogger()->info(__VA_ARGS__)
 #define ALRC_WARN(...)          ::Aalforreca::Log::clientLogger()->warn(__VA_ARGS__)
 #define ALRC_ERROR(...)         ::Aalforreca::Log::clientLogger()->error(__VA_ARGS__)
 #define ALRC_CRITICAL(...)      ::Aalforreca::Log::clientLogger()->critical(__VA_ARGS__)
-
+#endif

@@ -68,6 +68,8 @@ if(COMMAND target_precompile_headers)
     target_precompile_headers(${PROJECT_NAME} PRIVATE "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/alrcpch.h")
 endif()
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE ALRC_USE_CORE_LOGGER)
+
 
 # Download all the submodules
 find_package(Git QUIET)
