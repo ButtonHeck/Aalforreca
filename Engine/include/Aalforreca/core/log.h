@@ -3,6 +3,7 @@
 #include "Aalforreca/core/pointers.h"
 
 #include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 namespace Aalforreca
 {

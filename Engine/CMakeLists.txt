@@ -24,6 +24,12 @@ set(HEADER_FILES
     "${ALRC_HEADERS}/Aalforreca/core/entry_point.h"
     "${ALRC_HEADERS}/Aalforreca/core/pointers.h"
     "${ALRC_HEADERS}/Aalforreca/core/log.h"
+    "${ALRC_HEADERS}/Aalforreca/core/key_codes.h"
+    "${ALRC_HEADERS}/Aalforreca/core/mouse_codes.h"
+    "${ALRC_HEADERS}/Aalforreca/events/event.h"
+    "${ALRC_HEADERS}/Aalforreca/events/application_event.h"
+    "${ALRC_HEADERS}/Aalforreca/events/key_event.h"
+    "${ALRC_HEADERS}/Aalforreca/events/mouse_event.h"
 )
 
 set(SOURCE_FILES
