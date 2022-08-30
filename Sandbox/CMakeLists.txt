@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Sources and includes
 include_directories(
-    "${PROJECT_SOURCE_DIR}/../Engine/include"
+    "${PROJECT_SOURCE_DIR}/../Engine/include/public"
 )
 
 set(SOURCE_FILES
@@ -21,13 +21,6 @@ add_executable(${PROJECT_NAME}
     ${SOURCE_FILES}
 )
 
-
-# Dependencies
-target_link_directories(${PROJECT_NAME}
-    PRIVATE "${CMAKE_BINARY_DIR}/Engine/vendor/openal-soft"
-)
-
 target_link_libraries(${PROJECT_NAME}
     PRIVATE AalforrecaEngine
-    PRIVATE OpenAL::OpenAL
 )

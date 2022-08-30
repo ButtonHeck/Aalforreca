@@ -10,34 +10,35 @@ unset("QT_QMAKE_EXECUTABLE")
 
 
 # Sources and includes
-set(ALRC_HEADERS "${PROJECT_SOURCE_DIR}/include")
-set(ALRC_SOURCES "${PROJECT_SOURCE_DIR}/src")
-set(ALRC_VENDOR "${PROJECT_SOURCE_DIR}/vendor")
+set(ALRC_INTERNAL_HEADERS_DIR "${PROJECT_SOURCE_DIR}/include/private")
+set(ALRC_HEADERS_DIR "${PROJECT_SOURCE_DIR}/include/public")
+set(ALRC_SOURCES_DIR "${PROJECT_SOURCE_DIR}/src")
+set(ALRC_VENDOR_DIR "${PROJECT_SOURCE_DIR}/vendor")
 
 include_directories(
-    ${ALRC_HEADERS}
-    ${ALRC_SOURCES}
+    ${ALRC_HEADERS_DIR}
+    ${ALRC_INTERNAL_HEADERS_DIR}
     ${PROJECT_BINARY_DIR}
 )
 set(HEADER_FILES
-    "${ALRC_HEADERS}/Aalforreca/core/application.h"
-    "${ALRC_HEADERS}/Aalforreca/core/entry_point.h"
-    "${ALRC_HEADERS}/Aalforreca/core/pointers.h"
-    "${ALRC_HEADERS}/Aalforreca/core/log.h"
-    "${ALRC_HEADERS}/Aalforreca/core/key_codes.h"
-    "${ALRC_HEADERS}/Aalforreca/core/mouse_codes.h"
-    "${ALRC_HEADERS}/Aalforreca/events/event.h"
-    "${ALRC_HEADERS}/Aalforreca/events/application_event.h"
-    "${ALRC_HEADERS}/Aalforreca/events/key_event.h"
-    "${ALRC_HEADERS}/Aalforreca/events/mouse_event.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/application.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/entry_point.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/pointers.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/log.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/key_codes.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/mouse_codes.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/events/event.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/events/application_event.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/events/key_event.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/events/mouse_event.h"
 )
 
 set(SOURCE_FILES
-    "${ALRC_SOURCES}/core/application.cpp"
-    "${ALRC_SOURCES}/core/log.cpp"
+    "${ALRC_SOURCES_DIR}/core/application.cpp"
+    "${ALRC_SOURCES_DIR}/core/log.cpp"
 )
-set(PCH_SOURCE_FILE "${ALRC_SOURCES}/alrcpch.cpp")
-set(IMGUI_IMPL_DIR "${ALRC_VENDOR}/ImGui/backends")
+set(PCH_SOURCE_FILE "${ALRC_SOURCES_DIR}/alrcpch.cpp")
+set(IMGUI_IMPL_DIR "${ALRC_VENDOR_DIR}/ImGui/backends")
 
 aux_source_directory(vendor/ImGui IMGUI_SRC)
 aux_source_directory(vendor/ImGuizmo IMGUIZMO_SRC)
@@ -64,7 +65,7 @@ if(AALFORRECA_BUILD_TESTS)
 endif()
 
 if(COMMAND target_precompile_headers)
-    target_precompile_headers(${PROJECT_NAME} PRIVATE "${ALRC_SOURCES}/alrcpch.h")
+    target_precompile_headers(${PROJECT_NAME} PRIVATE "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/alrcpch.h")
 endif()
 
 
@@ -86,31 +87,31 @@ endif()
 
 
 # check all the submodules
-if (NOT EXISTS "${ALRC_VENDOR}/GLFW/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/GLFW/CMakeLists.txt")
     message(FATAL_ERROR "GLFW submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/assimp/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/assimp/CMakeLists.txt")
     message(FATAL_ERROR "assimp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/doctest/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/doctest/CMakeLists.txt")
     message(FATAL_ERROR "doctest submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/freetype/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/freetype/CMakeLists.txt")
     message(FATAL_ERROR "freetype submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/glm/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/glm/CMakeLists.txt")
     message(FATAL_ERROR "glm submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/openal-soft/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/openal-soft/CMakeLists.txt")
     message(FATAL_ERROR "openal-soft submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/qu3e/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/qu3e/CMakeLists.txt")
     message(FATAL_ERROR "qu3e submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/spdlog/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/spdlog/CMakeLists.txt")
     message(FATAL_ERROR "spdlog submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
-if (NOT EXISTS "${ALRC_VENDOR}/yaml-cpp/CMakeLists.txt")
+if (NOT EXISTS "${ALRC_VENDOR_DIR}/yaml-cpp/CMakeLists.txt")
     message(FATAL_ERROR "yaml-cpp submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Update submodules and try again.")
 endif()
 
