@@ -69,6 +69,7 @@ if(COMMAND target_precompile_headers)
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE ALRC_USE_CORE_LOGGER)
+target_compile_definitions(${PROJECT_NAME} PRIVATE "ALRC_DEBUG=$<IF:$<CONFIG:Release>,0,1>")
 
 
 # Download all the submodules
