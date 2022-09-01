@@ -2,4 +2,5 @@
 
 #include "Aalforreca/core/pointers.h"
 #include "Aalforreca/core/application.h"
+#include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"

@@ -2,6 +2,6 @@
 
 namespace Aalforreca
 {
-    static int initializeVendorModules();
-    static void finalizeVendorModules();
+    int initializeVendorModules();
+    void finalizeVendorModules();
 }
