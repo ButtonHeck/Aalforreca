@@ -4,6 +4,8 @@
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/vendor_initializer.h"
 #include "Aalforreca/core/exit_codes.h"
+#include "Aalforreca/events/event.h"
+#include "Aalforreca/events/application_event.h"
 #include <AalforrecaEngineConfig.h>
 
 namespace Aalforreca
@@ -34,6 +36,8 @@ namespace Aalforreca
         ALRC_CORE_INFO("Aalforreca engine {}.{}", versionMajor(), versionMinor());
 
         _window = createUnique<Window>();
+        _window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
+
         _running = true;
         _app = this;
     }
@@ -57,5 +61,19 @@ namespace Aalforreca
         }
 
         return SuccessExitCode;
+    }
+
+    void Application::onEvent(Event& event)
+    {
+        EventDispatcher dispatcher(event);
+        dispatcher.dispatch<WindowCloseEvent>(std::bind(&Application::onWindowClose, this, std::placeholders::_1));
+
+        ALRC_CORE_TRACE(event);
+    }
+
+    bool Application::onWindowClose(WindowCloseEvent& event)
+    {
+        _running = false;
+        return true;
     }
 }

@@ -63,7 +63,8 @@ namespace Aalforreca
     void Window::onUpdate()
     {
         // todo context
-        //glfwPollEvents();
+        glfwPollEvents();
+        glfwSwapBuffers(_window);
     }
 
     uint32_t Window::width() const

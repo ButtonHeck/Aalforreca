@@ -5,6 +5,8 @@
 namespace Aalforreca
 {
     class Window;
+    struct Event;
+    struct WindowCloseEvent;
 
     class Application
     {
@@ -22,6 +24,10 @@ namespace Aalforreca
         virtual void initialize();
 
         int exec();
+        void onEvent(Event& event);
+
+    private:
+        bool onWindowClose(WindowCloseEvent& event);
 
     private:
         static Application* _app;
