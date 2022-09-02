@@ -5,6 +5,7 @@
 #include "Aalforreca/events/application_event.h"
 #include "Aalforreca/events/key_event.h"
 #include "Aalforreca/events/mouse_event.h"
+#include "Aalforreca/core/exit_codes.h"
 
 #include <GLFW/glfw3.h>
 
@@ -22,13 +23,24 @@ namespace Aalforreca
     {
         glfwDestroyWindow(_window);
         --alrcWindowCount;
+
+        if (alrcWindowCount == 0)
+            glfwTerminate();
     }
 
-    void Window::initialize(const WindowProperties& props)
+    ExitCode Window::initialize(const WindowProperties& props)
     {
-        _userData.title = props.title;
+        if (alrcWindowCount == 0)
+        {
+            if (glfwInit() != GLFW_TRUE)
+            {
+                ALRC_CORE_CRITICAL("Error with initialization of GLFW window");
+                return WindowInitializationFailExitCode;
+            }
+            glfwSetErrorCallback(GLFWerrorCallback);
+        }
 
-        glfwSetErrorCallback(GLFWerrorCallback);
+        _userData.title = props.title;
 
         GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
         const GLFWvidmode* vidmode = glfwGetVideoMode(primaryMonitor);
@@ -50,6 +62,13 @@ namespace Aalforreca
 #endif
 
         _window = glfwCreateWindow(int(_userData.resolution.width), int(_userData.resolution.height), _userData.title, props.fullscreen ? primaryMonitor : nullptr, nullptr);
+
+        if (!_window)
+        {
+            ALRC_CORE_CRITICAL("Error with GLFW window creation");
+            return WindowInitializationFailExitCode;
+        }
+
         ++alrcWindowCount;
 
         // todo context
@@ -58,6 +77,8 @@ namespace Aalforreca
         glfwSetWindowUserPointer(_window, &_userData);
         setVSync(props.vSync);
         initCallbacks();
+
+        return SuccessExitCode;
     }
 
     void Window::onUpdate()

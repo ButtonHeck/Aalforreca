@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Aalforreca/core/pointers.h"
+#include "Aalforreca/core/exit_codes.h"
 
 namespace Aalforreca
 {
@@ -21,9 +22,9 @@ namespace Aalforreca
     public:
         virtual ~Application();
 
-        virtual void initialize();
+        virtual ExitCode initialize();
 
-        int exec();
+        ExitCode exec();
         void onEvent(Event& event);
 
     private:

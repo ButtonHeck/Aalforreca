@@ -1,5 +1,5 @@
 #include <Aalforreca/Aalforreca.h>
-#include <Aalforreca/core/entry_point.h>
+#include <Aalforreca/core/main.h>
 
 class Sandbox : public Aalforreca::Application
 {
@@ -10,14 +10,14 @@ public:
         ALRC_INFO("Sandbox start...");
     }
 
-    void initialize() override final
+    Aalforreca::ExitCode initialize() override final
     {
         Aalforreca::WindowProperties windowProps;
         windowProps.title = "Sandbox";
         windowProps.resolution = {1920, 1080};
         windowProps.fullscreen = false;
 
-        _window->initialize(windowProps);
+        return _window->initialize(windowProps);
     }
 
     ~Sandbox()

@@ -20,6 +20,8 @@ namespace Aalforreca
     };
 }
 
+// todo: add macro for optional logging if certain argument has been provided
+
 #ifdef ALRC_USE_CORE_LOGGER
 #define ALRC_CORE_TRACE(...)    ::Aalforreca::Log::coreLogger()->trace(__VA_ARGS__)
 #define ALRC_CORE_INFO(...)     ::Aalforreca::Log::coreLogger()->info(__VA_ARGS__)

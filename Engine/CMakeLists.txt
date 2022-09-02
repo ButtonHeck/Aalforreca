@@ -21,8 +21,8 @@ include_directories(
     ${PROJECT_BINARY_DIR}
 )
 set(HEADER_FILES
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/main.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/application.h"
-    "${ALRC_HEADERS_DIR}/Aalforreca/core/entry_point.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/pointers.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/log.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/key_codes.h"
@@ -32,14 +32,12 @@ set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/events/application_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/key_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/mouse_event.h"
-    "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/core/vendor_initializer.h"
 )
 
 set(SOURCE_FILES
     "${ALRC_SOURCES_DIR}/core/application.cpp"
     "${ALRC_SOURCES_DIR}/core/log.cpp"
     "${ALRC_SOURCES_DIR}/core/window.cpp"
-    "${ALRC_SOURCES_DIR}/core/vendor_initializer.cpp"
 )
 set(PCH_SOURCE_FILE "${ALRC_SOURCES_DIR}/alrcpch.cpp")
 set(IMGUI_IMPL_DIR "${ALRC_VENDOR_DIR}/ImGui/backends")

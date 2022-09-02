@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Aalforreca/events/event.h"
+#include "Aalforreca/core/exit_codes.h"
 
 #include <functional>
 
@@ -38,7 +39,7 @@ namespace Aalforreca
         Window() = default;
         ~Window();
 
-        void initialize(const WindowProperties& props);
+        ExitCode initialize(const WindowProperties& props);
         void onUpdate();
 
         uint32_t width() const;
