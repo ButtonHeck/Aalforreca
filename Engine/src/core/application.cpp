@@ -5,7 +5,7 @@
 #include "Aalforreca/core/exit_codes.h"
 #include "Aalforreca/core/helper_macros.h"
 #include "Aalforreca/events/event.h"
-#include "Aalforreca/events/application_event.h"
+#include "Aalforreca/events/window_event.h"
 #include <AalforrecaEngineConfig.h>
 
 namespace Aalforreca
@@ -63,6 +63,8 @@ namespace Aalforreca
 
     void Application::onEvent(Event& event)
     {
+        ALRC_CORE_TRACE(event);
+
         EventDispatcher dispatcher(event);
         dispatcher.dispatch<WindowCloseEvent>(ALRC_BIND_EVENT_FUNCTION(Application::onWindowClose));
     }

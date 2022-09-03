@@ -2,7 +2,7 @@
 #include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/helper_macros.h"
-#include "Aalforreca/events/application_event.h"
+#include "Aalforreca/events/window_event.h"
 #include "Aalforreca/events/key_event.h"
 #include "Aalforreca/events/mouse_event.h"
 #include "Aalforreca/core/exit_codes.h"
@@ -126,11 +126,39 @@ namespace Aalforreca
             data.eventCallback(event);
         });
 
+        glfwSetWindowPosCallback(_window, [](GLFWwindow* window, int x, int y){
+            WindowUserData& data = *(static_cast<WindowUserData*>(glfwGetWindowUserPointer(window)));
+
+            WindowMovedEvent event(x, y);
+            data.eventCallback(event);
+        });
+
         glfwSetWindowCloseCallback(_window, [](GLFWwindow* window)
         {
             WindowUserData& data = *(static_cast<WindowUserData*>(glfwGetWindowUserPointer(window)));
 
             WindowCloseEvent event;
+            data.eventCallback(event);
+        });
+
+        glfwSetWindowFocusCallback(_window, [](GLFWwindow* window, int focused){
+            WindowUserData& data = *(static_cast<WindowUserData*>(glfwGetWindowUserPointer(window)));
+
+            WindowFocusEvent event(focused);
+            data.eventCallback(event);
+        });
+
+        glfwSetWindowIconifyCallback(_window, [](GLFWwindow* window, int iconified){
+            WindowUserData& data = *(static_cast<WindowUserData*>(glfwGetWindowUserPointer(window)));
+
+            WindowIconifyEvent event(iconified);
+            data.eventCallback(event);
+        });
+
+        glfwSetFramebufferSizeCallback(_window, [](GLFWwindow* window, int width, int height){
+            WindowUserData& data = *(static_cast<WindowUserData*>(glfwGetWindowUserPointer(window)));
+
+            WindowFramebufferResizeEvent event(width, height);
             data.eventCallback(event);
         });
 

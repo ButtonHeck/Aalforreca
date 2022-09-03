@@ -7,17 +7,22 @@ namespace Aalforreca
     enum class EventType
     {
         None = 0,
+
         WindowCloseEventType,
         WindowResizeEventType,
-        WindowFocusEventType,
-        WindowLostFocusEventType,
         WindowMovedEventType,
+        WindowFocusEventType,
+        WindowIconifyEventType,
+        WindowFramebufferResizeEventType,
+
         ApplicaionTickEventType,
         ApplicaionUpdateEventType,
         ApplicaionRenderEventType,
+
         KeyPressedEventType,
         KeyReleasedEventType,
         KeyTypedEventType,
+
         MouseButtonPressedEventType,
         MouseButtonReleasedEventType,
         MouseMovedEventType,
@@ -29,10 +34,11 @@ namespace Aalforreca
     {
         None = 0,
         ApplicationEventCategory = 1 << 0,
-        InputEventCategory       = 1 << 1,
-        KeyboardEventCategory    = 1 << 2,
-        MouseEventCategory       = 1 << 3,
-        MouseButtonEventCategory = 1 << 4
+        WindowEventCategory      = 1 << 1,
+        InputEventCategory       = 1 << 2,
+        KeyboardEventCategory    = 1 << 3,
+        MouseEventCategory       = 1 << 4,
+        MouseButtonEventCategory = 1 << 5
     };
 
 #define EVENT_CLASS_TYPE(eventType) \

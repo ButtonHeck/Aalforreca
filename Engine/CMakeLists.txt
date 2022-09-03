@@ -23,6 +23,8 @@ include_directories(
 set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/core/main.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/application.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/exit_codes.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/helper_macros.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/pointers.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/log.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/key_codes.h"
@@ -32,6 +34,7 @@ set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/events/application_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/key_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/mouse_event.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/events/window_event.h"
 )
 
 set(SOURCE_FILES

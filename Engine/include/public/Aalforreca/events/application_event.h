@@ -4,48 +4,6 @@
 
 namespace Aalforreca
 {
-    struct WindowResizeEvent : public Event
-    {
-        WindowResizeEvent(unsigned int width, unsigned int height)
-            : _width(width)
-            , _height(height)
-        {}
-
-        unsigned int width() const
-        {
-            return _width;
-        }
-
-        unsigned int height() const
-        {
-            return _height;
-        }
-
-        std::string toString() const override
-        {
-            std::stringstream ss;
-            ss << "WindowResizeEvent: " << _width << ", " << _height;
-            return ss.str();
-        }
-
-        EVENT_CLASS_TYPE(WindowResizeEventType)
-        EVENT_CLASS_CATEGORY(ApplicationEventCategory)
-
-    private:
-        unsigned int _width;
-        unsigned int _height;
-    };
-
-
-    struct WindowCloseEvent : public Event
-    {
-        WindowCloseEvent() = default;
-
-        EVENT_CLASS_TYPE(WindowCloseEventType)
-        EVENT_CLASS_CATEGORY(ApplicationEventCategory)
-    };
-
-
     struct ApplicaionTickEvent : public Event
     {
         ApplicaionTickEvent() = default;
