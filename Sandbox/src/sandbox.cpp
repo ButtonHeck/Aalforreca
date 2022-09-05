@@ -16,6 +16,7 @@ public:
         windowProps.title = "Sandbox";
         windowProps.resolution = {1920, 1080};
         windowProps.fullscreen = false;
+        windowProps.iconFilename = Aalforreca::PathHelper::path(ALRC_APP_ASSETS_PATH, "sandbox.png");
 
         return _window->initialize(windowProps);
     }

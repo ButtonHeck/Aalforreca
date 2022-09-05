@@ -63,8 +63,6 @@ namespace Aalforreca
 
     void Application::onEvent(Event& event)
     {
-        ALRC_CORE_TRACE(event);
-
         EventDispatcher dispatcher(event);
         dispatcher.dispatch<WindowCloseEvent>(ALRC_BIND_EVENT_FUNCTION(Application::onWindowClose));
     }

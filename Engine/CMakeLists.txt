@@ -30,6 +30,8 @@ set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/core/key_codes.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/mouse_codes.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/window.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/path_helper.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/image.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/application_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/key_event.h"
@@ -41,6 +43,8 @@ set(SOURCE_FILES
     "${ALRC_SOURCES_DIR}/core/application.cpp"
     "${ALRC_SOURCES_DIR}/core/log.cpp"
     "${ALRC_SOURCES_DIR}/core/window.cpp"
+    "${ALRC_SOURCES_DIR}/core/path_helper.cpp"
+    "${ALRC_SOURCES_DIR}/core/image.cpp"
 )
 set(PCH_SOURCE_FILE "${ALRC_SOURCES_DIR}/alrcpch.cpp")
 set(IMGUI_IMPL_DIR "${ALRC_VENDOR_DIR}/ImGui/backends")
@@ -75,6 +79,7 @@ endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE ALRC_USE_CORE_LOGGER)
 target_compile_definitions(${PROJECT_NAME} PRIVATE "ALRC_DEBUG=$<IF:$<CONFIG:Release>,0,1>")
+target_compile_definitions(${PROJECT_NAME} PRIVATE "ALRC_ASSETS_PATH=\"${PROJECT_SOURCE_DIR}/assets\"")
 
 
 # Download all the submodules

@@ -21,12 +21,15 @@ namespace Aalforreca
         WindowResolution resolution;
         bool fullscreen;
         bool vSync;
+        std::string iconFilename;
 
-        WindowProperties(const char* title = "Aalforreca window", WindowResolution resolution = {800, 600}, bool fullscreen = false, bool vSync = true)
+        WindowProperties(const char* title = "Aalforreca window", WindowResolution resolution = {800, 600}, bool fullscreen = false, bool vSync = true,
+                         std::string iconFilename = "")
             : title(title)
             , resolution(resolution)
             , fullscreen(fullscreen)
             , vSync(vSync)
+            , iconFilename(iconFilename)
         {}
     };
 
@@ -61,6 +64,7 @@ namespace Aalforreca
 
     private:
         void initCallbacks();
+        void loadIcon(const char* filename);
 
     private:
         GLFWwindow* _window;

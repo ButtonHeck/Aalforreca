@@ -2,10 +2,12 @@
 #include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/helper_macros.h"
+#include "Aalforreca/core/exit_codes.h"
+#include "Aalforreca/core/path_helper.h"
+#include "Aalforreca/core/image.h"
 #include "Aalforreca/events/window_event.h"
 #include "Aalforreca/events/key_event.h"
 #include "Aalforreca/events/mouse_event.h"
-#include "Aalforreca/core/exit_codes.h"
 
 #include <GLFW/glfw3.h>
 
@@ -71,11 +73,12 @@ namespace Aalforreca
 
         ++alrcWindowCount;
 
-        // todo context
+        // todo: context
         glfwMakeContextCurrent(_window);
 
         glfwSetWindowUserPointer(_window, &_userData);
         setVSync(props.vSync);
+        loadIcon(props.iconFilename.empty() ? PathHelper::path(ALRC_ASSETS_PATH, "alrc64.png").c_str() : props.iconFilename.c_str());
         initCallbacks();
 
         return SuccessExitCode;
@@ -83,7 +86,7 @@ namespace Aalforreca
 
     void Window::onUpdate()
     {
-        // todo context
+        // todo: context
         glfwPollEvents();
         glfwSwapBuffers(_window);
     }
@@ -239,5 +242,16 @@ namespace Aalforreca
             MouseMovedEvent event((float)xPos, (float)yPos);
             data.eventCallback(event);
         });
+    }
+
+    void Window::loadIcon(const char* filename)
+    {
+        Image img(filename, 4);
+        GLFWimage icon{img.width(), img.height(), img.pixels()};
+
+        if (icon.pixels)
+            glfwSetWindowIcon(_window, 1, &icon);
+        else
+            ALRC_CORE_WARN("Could not set window icon");
     }
 }

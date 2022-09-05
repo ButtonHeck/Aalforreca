@@ -24,3 +24,5 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE AalforrecaEngine
 )
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE "ALRC_APP_ASSETS_PATH=\"${PROJECT_SOURCE_DIR}/assets\"")
