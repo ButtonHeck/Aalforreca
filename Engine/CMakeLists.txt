@@ -37,6 +37,10 @@ set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/events/key_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/mouse_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/window_event.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/graphics/graphics_context.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/graphics/graphics_api.h"
+    "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/opengl/opengl_graphics_api.h"
+    "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/opengl/opengl_graphics_context.h"
 )
 
 set(SOURCE_FILES
@@ -45,6 +49,10 @@ set(SOURCE_FILES
     "${ALRC_SOURCES_DIR}/core/window.cpp"
     "${ALRC_SOURCES_DIR}/core/path_helper.cpp"
     "${ALRC_SOURCES_DIR}/core/image.cpp"
+    "${ALRC_SOURCES_DIR}/graphics/graphics_context.cpp"
+    "${ALRC_SOURCES_DIR}/graphics/graphics_api.cpp"
+    "${ALRC_SOURCES_DIR}/opengl/opengl_graphics_api.cpp"
+    "${ALRC_SOURCES_DIR}/opengl/opengl_graphics_context.cpp"
 )
 set(PCH_SOURCE_FILE "${ALRC_SOURCES_DIR}/alrcpch.cpp")
 set(IMGUI_IMPL_DIR "${ALRC_VENDOR_DIR}/ImGui/backends")

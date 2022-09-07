@@ -2,6 +2,7 @@
 
 #include "Aalforreca/events/event.h"
 #include "Aalforreca/core/exit_codes.h"
+#include "Aalforreca/graphics/graphics_context.h"
 
 #include <functional>
 
@@ -69,5 +70,6 @@ namespace Aalforreca
     private:
         GLFWwindow* _window;
         WindowUserData _userData;
+        Unique<IGraphicsContext> _context;
     };
 }

@@ -71,11 +71,15 @@ namespace Aalforreca
             return WindowInitializationFailExitCode;
         }
 
+        _context = IGraphicsContext::create(_window);
+        if (!_context)
+            return ContextInitializationFailExitCode;
+
+        const auto contextInitExitCode = _context->initialize();
+        if (contextInitExitCode != SuccessExitCode)
+            return contextInitExitCode;
+
         ++alrcWindowCount;
-
-        // todo: context
-        glfwMakeContextCurrent(_window);
-
         glfwSetWindowUserPointer(_window, &_userData);
         setVSync(props.vSync);
         loadIcon(props.iconFilename.empty() ? PathHelper::path(ALRC_ASSETS_PATH, "alrc64.png").c_str() : props.iconFilename.c_str());
@@ -86,7 +90,6 @@ namespace Aalforreca
 
     void Window::onUpdate()
     {
-        // todo: context
         glfwPollEvents();
         glfwSwapBuffers(_window);
     }
