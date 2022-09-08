@@ -6,7 +6,7 @@
 
 namespace Aalforreca
 {
-    Image::Image(const char* filename, int desiredChannels, bool flipVertically)
+    Image::Image(const char* filename, Channels desiredChannels, bool flipVertically)
         : _width(0)
         , _height(0)
         , _channels(desiredChannels)

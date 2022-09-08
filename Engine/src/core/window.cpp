@@ -249,7 +249,7 @@ namespace Aalforreca
 
     void Window::loadIcon(const char* filename)
     {
-        Image img(filename, 4);
+        Image img(filename, Image::RGBA);
         GLFWimage icon{img.width(), img.height(), img.pixels()};
 
         if (icon.pixels)

@@ -5,7 +5,16 @@ namespace Aalforreca
     class Image
     {
     public:
-        Image(const char* filename, int desiredChannels, bool flipVertically = false);
+        enum Channels
+        {
+            R = 1,
+            RG,
+            RGB,
+            RGBA
+        };
+
+    public:
+        Image(const char* filename, Channels desiredChannels, bool flipVertically = false);
         ~Image();
 
         int width() const;
@@ -16,7 +25,7 @@ namespace Aalforreca
     private:
         int _width;
         int _height;
-        int _channels;
+        Channels _channels;
         unsigned char* _pixels;
     };
 }

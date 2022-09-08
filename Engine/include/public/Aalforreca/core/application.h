@@ -25,9 +25,9 @@ namespace Aalforreca
         virtual ExitCode initialize();
 
         ExitCode exec();
-        void onEvent(Event& event);
 
     private:
+        void onEvent(Event& event);
         bool onWindowClose(WindowCloseEvent& event);
 
     private:
