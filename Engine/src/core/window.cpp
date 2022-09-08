@@ -59,7 +59,7 @@ namespace Aalforreca
 
         ALRC_CORE_INFO("Initializing window \"{}\" ({}x{}, fullscreen: {}, vSync: {})", props.title, props.resolution.width, props.resolution.height, props.fullscreen, props.vSync);
 
-#if ALRC_DEBUG
+#ifndef NDEBUG
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
 #endif
 

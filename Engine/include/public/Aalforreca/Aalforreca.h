@@ -5,3 +5,4 @@
 #include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/path_helper.h"
+#include "Aalforreca/core/assert.h"

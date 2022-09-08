@@ -32,6 +32,8 @@ set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/core/window.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/path_helper.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/image.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/assert.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/platform_detection.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/application_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/key_event.h"
@@ -85,8 +87,7 @@ if(COMMAND target_precompile_headers)
     target_precompile_headers(${PROJECT_NAME} PRIVATE "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/alrcpch.h")
 endif()
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE ALRC_USE_CORE_LOGGER)
-target_compile_definitions(${PROJECT_NAME} PRIVATE "ALRC_DEBUG=$<IF:$<CONFIG:Release>,0,1>")
+target_compile_definitions(${PROJECT_NAME} PRIVATE ALRC_MACRO_USE_CORE_PREFIX)
 target_compile_definitions(${PROJECT_NAME} PRIVATE "ALRC_ASSETS_PATH=\"${PROJECT_SOURCE_DIR}/assets\"")
 
 

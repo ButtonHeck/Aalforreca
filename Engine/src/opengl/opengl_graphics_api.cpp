@@ -7,7 +7,7 @@ namespace Aalforreca
 {
     ExitCode OpenGLGraphicsAPI::initialize()
     {
-#if ALRC_DEBUG
+#ifndef NDEBUG
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
         //todo: create procedure for opengl debug callback
