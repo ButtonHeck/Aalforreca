@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(AalforrecaEngine VERSION 0.1)
+project(AalforrecaEngine
+    VERSION 0.1
+    DESCRIPTION "3D Game engine Aalforreca"
+)
 
 configure_file(AalforrecaEngineConfig.h.in AalforrecaEngineConfig.h)
 
