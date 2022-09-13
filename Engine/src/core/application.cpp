@@ -1,5 +1,6 @@
 #include "Aalforreca/alrcpch.h"
 #include "Aalforreca/core/application.h"
+#include "Aalforreca/core/window_manager.h"
 #include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/exit_codes.h"
@@ -10,12 +11,7 @@
 
 namespace Aalforreca
 {
-    Application* Application::_app = nullptr;
-
-    const Application& Application::app()
-    {
-        return *_app;
-    }
+    ALRC_SINGLETON(Application)
 
     int Application::versionMajor()
     {
@@ -28,27 +24,25 @@ namespace Aalforreca
     }
 
 
-    Application::Application()
-    {
-        Log::init();
-
-        ALRC_CORE_INFO("Aalforreca engine {}.{}", versionMajor(), versionMinor());
-
-        _window = createUnique<Window>();
-        _window->setEventCallback(ALRC_BIND_EVENT_FUNCTION(Application::onEvent));
-
-        _running = true;
-        _app = this;
-    }
-
     Application::~Application()
     {
-        ALRC_CORE_INFO("Engine shutdown...");
+        ALRC_CORE_INFO("Core shutdown...");
     }
 
     ExitCode Application::initialize()
     {
-        return _window->initialize(WindowProperties());
+        auto exitCode = initializeRoot();
+        if (exitCode != SuccessExitCode)
+            return exitCode;
+
+        ALRC_CORE_INFO("Aalforreca engine {}.{}", versionMajor(), versionMinor());
+
+        _window = _windowManager->createWindow();
+        _window->setEventCallback(ALRC_BIND_EVENT_FUNCTION(Application::onEvent));
+
+        _running = true;
+
+        return initializeClient();
     }
 
     ExitCode Application::exec()
@@ -59,6 +53,11 @@ namespace Aalforreca
         }
 
         return SuccessExitCode;
+    }
+
+    ExitCode Application::initializeClient()
+    {
+        return _window->initialize(WindowProperties());
     }
 
     void Application::onEvent(Event& event)

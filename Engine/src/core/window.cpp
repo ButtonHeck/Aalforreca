@@ -5,6 +5,7 @@
 #include "Aalforreca/core/exit_codes.h"
 #include "Aalforreca/core/path_helper.h"
 #include "Aalforreca/core/image.h"
+#include "Aalforreca/core/window_manager.h"
 #include "Aalforreca/events/window_event.h"
 #include "Aalforreca/events/key_event.h"
 #include "Aalforreca/events/mouse_event.h"
@@ -18,29 +19,20 @@ namespace Aalforreca
         ALRC_CORE_ERROR("GLFW error ({}): {}", errorCode, description);
     }
 
-    static uint8_t alrcWindowCount = 0;
 
+    Window::Window(WindowManager* manager)
+        : _manager(manager)
+    {
+    }
 
     Window::~Window()
     {
-        glfwDestroyWindow(_window);
-        --alrcWindowCount;
-
-        if (alrcWindowCount == 0)
-            glfwTerminate();
+        _manager->destroyWindow(_window);
     }
 
     ExitCode Window::initialize(const WindowProperties& props)
     {
-        if (alrcWindowCount == 0)
-        {
-            if (glfwInit() != GLFW_TRUE)
-            {
-                ALRC_CORE_CRITICAL("Error with initialization of GLFW window");
-                return WindowInitializationFailExitCode;
-            }
-            glfwSetErrorCallback(GLFWerrorCallback);
-        }
+        glfwSetErrorCallback(GLFWerrorCallback);
 
         _userData.title = props.title;
 
@@ -79,7 +71,6 @@ namespace Aalforreca
         if (contextInitExitCode != SuccessExitCode)
             return contextInitExitCode;
 
-        ++alrcWindowCount;
         glfwSetWindowUserPointer(_window, &_userData);
         setVSync(props.vSync);
         loadIcon(props.iconFilename.empty() ? PathHelper::path(ALRC_ASSETS_PATH, "alrc64.png").c_str() : props.iconFilename.c_str());

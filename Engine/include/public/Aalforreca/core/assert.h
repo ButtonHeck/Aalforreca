@@ -21,14 +21,10 @@
     #define ALRC_INTERNAL_ASSERT_GET_MACRO(...) ALRC_INTERNAL_ASSERT_GET_MACRO_NAME(__VA_ARGS__, ALRC_INTERNAL_ASSERT_MSG, ALRC_INTERNAL_ASSERT_NO_MSG)
 
     #ifdef ALRC_MACRO_USE_CORE_PREFIX
-        #define ALRC_CORE_ASSERT(...) ALRC_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(_CORE_, __VA_ARGS__)
+        #define ALRC_ASSERT(...) ALRC_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(_CORE_, __VA_ARGS__)
     #else
-        #define ALRC_ASSERT(...) ALRC_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(_, __VA_ARGS__)
+        #define ALRC_ASSERT(...) ALRC_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(_CLIENT_, __VA_ARGS__)
     #endif
 #else
-    #ifdef ALRC_MACRO_USE_CORE_PREFIX
-        #define ALRC_CORE_ASSERT(...)
-    #else
-        #define ALRC_ASSERT(...)
-    #endif
+    #define ALRC_ASSERT(...)
 #endif

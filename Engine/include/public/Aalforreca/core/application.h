@@ -2,6 +2,8 @@
 
 #include "Aalforreca/core/pointers.h"
 #include "Aalforreca/core/exit_codes.h"
+#include "Aalforreca/core/singleton.h"
+#include "Aalforreca/core/root.h"
 
 namespace Aalforreca
 {
@@ -9,29 +11,27 @@ namespace Aalforreca
     struct Event;
     struct WindowCloseEvent;
 
-    class Application
+    class Application : public Singleton<Application>, private Root
     {
     public:
-        static const Application& app();
         static int versionMajor();
         static int versionMinor();
 
     protected:
-        Application();
+        Application() = default;
 
     public:
         virtual ~Application();
 
-        virtual ExitCode initialize();
-
+        ExitCode initialize();
         ExitCode exec();
+
+    protected:
+        virtual ExitCode initializeClient();
 
     private:
         void onEvent(Event& event);
         bool onWindowClose(WindowCloseEvent& event);
-
-    private:
-        static Application* _app;
 
     protected:
         Unique<Window> _window;

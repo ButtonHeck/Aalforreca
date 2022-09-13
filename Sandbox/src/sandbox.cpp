@@ -7,11 +7,12 @@ public:
     Sandbox()
         : Aalforreca::Application()
     {
-        ALRC_INFO("Sandbox start...");
     }
 
-    Aalforreca::ExitCode initialize() override final
+    Aalforreca::ExitCode initializeClient() override final
     {
+        ALRC_CLIENT_INFO("Sandbox initialize...");
+
         Aalforreca::WindowProperties windowProps;
         windowProps.title = "Sandbox";
         windowProps.resolution = {1920, 1080};
@@ -23,7 +24,7 @@ public:
 
     ~Sandbox()
     {
-        ALRC_INFO("Sandbox shutdown...");
+        ALRC_CLIENT_INFO("Sandbox shutdown...");
     }
 };
 

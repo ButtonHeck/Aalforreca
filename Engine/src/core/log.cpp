@@ -9,7 +9,7 @@ namespace Aalforreca
     Shared<spdlog::logger> Log::_coreLogger;
     Shared<spdlog::logger> Log::_clientLogger;
 
-    void Log::init()
+    void Log::initialize()
     {
         std::vector<spdlog::sink_ptr> logSinks;
         logSinks.emplace_back(createShared<spdlog::sinks::stdout_color_sink_mt>(spdlog::color_mode::automatic));
@@ -18,12 +18,12 @@ namespace Aalforreca
         logSinks[0]->set_pattern("%^[%T.%e] %n: %v%$");
         logSinks[1]->set_pattern("[%T.%e] [%l] %n: %v");
 
-        _coreLogger = createShared<spdlog::logger>("ALRC", begin(logSinks), end(logSinks));
+        _coreLogger = createShared<spdlog::logger>("CORE", begin(logSinks), end(logSinks));
         spdlog::register_logger(_coreLogger);
         _coreLogger->set_level(spdlog::level::trace);
         _coreLogger->flush_on(spdlog::level::trace);
 
-        _clientLogger = createShared<spdlog::logger>("APP", begin(logSinks), end(logSinks));
+        _clientLogger = createShared<spdlog::logger>("CLIENT", begin(logSinks), end(logSinks));
         spdlog::register_logger(_clientLogger);
         _clientLogger->set_level(spdlog::level::trace);
         _clientLogger->flush_on(spdlog::level::trace);

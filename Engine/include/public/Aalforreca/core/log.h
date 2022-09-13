@@ -10,7 +10,7 @@ namespace Aalforreca
     class Log
     {
     public:
-        static void init();
+        static void initialize();
         static Shared<spdlog::logger>& coreLogger();
         static Shared<spdlog::logger>& clientLogger();
 
@@ -29,9 +29,9 @@ namespace Aalforreca
 #define ALRC_CORE_ERROR(...)    ::Aalforreca::Log::coreLogger()->error(__VA_ARGS__)
 #define ALRC_CORE_CRITICAL(...) ::Aalforreca::Log::coreLogger()->critical(__VA_ARGS__)
 #else
-#define ALRC_TRACE(...)         ::Aalforreca::Log::clientLogger()->trace(__VA_ARGS__)
-#define ALRC_INFO(...)          ::Aalforreca::Log::clientLogger()->info(__VA_ARGS__)
-#define ALRC_WARN(...)          ::Aalforreca::Log::clientLogger()->warn(__VA_ARGS__)
-#define ALRC_ERROR(...)         ::Aalforreca::Log::clientLogger()->error(__VA_ARGS__)
-#define ALRC_CRITICAL(...)      ::Aalforreca::Log::clientLogger()->critical(__VA_ARGS__)
+#define ALRC_CLIENT_TRACE(...)         ::Aalforreca::Log::clientLogger()->trace(__VA_ARGS__)
+#define ALRC_CLIENT_INFO(...)          ::Aalforreca::Log::clientLogger()->info(__VA_ARGS__)
+#define ALRC_CLIENT_WARN(...)          ::Aalforreca::Log::clientLogger()->warn(__VA_ARGS__)
+#define ALRC_CLIENT_ERROR(...)         ::Aalforreca::Log::clientLogger()->error(__VA_ARGS__)
+#define ALRC_CLIENT_CRITICAL(...)      ::Aalforreca::Log::clientLogger()->critical(__VA_ARGS__)
 #endif

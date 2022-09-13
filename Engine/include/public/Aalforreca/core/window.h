@@ -10,6 +10,8 @@ struct GLFWwindow;
 
 namespace Aalforreca
 {
+    class WindowManager;
+
     struct WindowResolution
     {
         uint32_t width;
@@ -40,7 +42,7 @@ namespace Aalforreca
         using EventCallback = std::function<void(Event&)>;
 
     public:
-        Window() = default;
+        Window(WindowManager* manager);
         ~Window();
 
         ExitCode initialize(const WindowProperties& props);
@@ -68,6 +70,7 @@ namespace Aalforreca
         void loadIcon(const char* filename);
 
     private:
+        WindowManager* const _manager;
         GLFWwindow* _window;
         WindowUserData _userData;
         Unique<IGraphicsContext> _context;

@@ -6,3 +6,4 @@
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/path_helper.h"
 #include "Aalforreca/core/assert.h"
+#include "Aalforreca/core/root.h"
