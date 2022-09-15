@@ -31,6 +31,12 @@ namespace Aalforreca
 
     ExitCode Application::initialize()
     {
+        if (_coreInitialized)
+        {
+            ALRC_CORE_WARN("Core is already initialized!");
+            return SuccessExitCode;
+        }
+
         auto exitCode = initializeRoot();
         if (exitCode != SuccessExitCode)
             return exitCode;
@@ -41,6 +47,7 @@ namespace Aalforreca
         _window->setEventCallback(ALRC_BIND_EVENT_FUNCTION(Application::onEvent));
 
         _running = true;
+        _coreInitialized = true;
 
         return initializeClient();
     }

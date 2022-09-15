@@ -37,6 +37,7 @@ namespace Aalforreca
         Unique<Window> _window;
 
     private:
+        bool _coreInitialized;
         bool _running;
     };
 
