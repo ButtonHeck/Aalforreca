@@ -6,6 +6,7 @@
 namespace Aalforreca
 {
     class WindowManager;
+    class ConfigManager;
 
     class Root
     {
@@ -13,9 +14,8 @@ namespace Aalforreca
         Root();
         ~Root();
 
-        ExitCode initializeRoot();
-
     protected:
+        Unique<ConfigManager> _configManager;
         Unique<WindowManager> _windowManager;
     };
 }

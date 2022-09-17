@@ -9,5 +9,11 @@ namespace Aalforreca
         {
             return std::filesystem::path(prefix).append(filename).string();
         }
+
+        std::string stripFilename(const char* fullFilename)
+        {
+            return std::filesystem::path(fullFilename).filename().string();
+        }
+
     }
 }

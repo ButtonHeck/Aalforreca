@@ -40,6 +40,8 @@ set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/core/singleton.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/root.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/core/window_manager.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/config_manager.h"
+    "${ALRC_HEADERS_DIR}/Aalforreca/core/config.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/application_event.h"
     "${ALRC_HEADERS_DIR}/Aalforreca/events/key_event.h"
@@ -49,6 +51,7 @@ set(HEADER_FILES
     "${ALRC_HEADERS_DIR}/Aalforreca/graphics/graphics_api.h"
     "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/opengl/opengl_graphics_api.h"
     "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/opengl/opengl_graphics_context.h"
+    "${ALRC_INTERNAL_HEADERS_DIR}/Aalforreca/core/yaml_config_impl.h"
 )
 
 set(SOURCE_FILES
@@ -59,6 +62,9 @@ set(SOURCE_FILES
     "${ALRC_SOURCES_DIR}/core/image.cpp"
     "${ALRC_SOURCES_DIR}/core/root.cpp"
     "${ALRC_SOURCES_DIR}/core/window_manager.cpp"
+    "${ALRC_SOURCES_DIR}/core/config_manager.cpp"
+    "${ALRC_SOURCES_DIR}/core/config.cpp"
+    "${ALRC_SOURCES_DIR}/core/yaml_config_impl.cpp"
     "${ALRC_SOURCES_DIR}/graphics/graphics_context.cpp"
     "${ALRC_SOURCES_DIR}/graphics/graphics_api.cpp"
     "${ALRC_SOURCES_DIR}/opengl/opengl_graphics_api.cpp"

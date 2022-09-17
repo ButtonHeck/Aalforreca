@@ -7,7 +7,7 @@ extern Aalforreca::Application* Aalforreca::createApplication();
 int main(int argc, char** argv)
 {
     auto application = Aalforreca::createApplication();
-    auto exitCode = application->initialize();
+    auto exitCode = application->initialize(argc, argv);
     if (exitCode == Aalforreca::SuccessExitCode)
         exitCode = application->exec();
 

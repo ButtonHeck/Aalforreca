@@ -24,6 +24,8 @@ namespace Aalforreca
 
     ExitCode WindowManager::initialize()
     {
+        ALRC_CORE_TRACE("Window manager initialize...");
+
         if (glfwInit() != GLFW_TRUE)
         {
             ALRC_CORE_CRITICAL("GLFW Initialization error");

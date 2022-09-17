@@ -23,7 +23,7 @@ namespace Aalforreca
     public:
         virtual ~Application();
 
-        ExitCode initialize();
+        ExitCode initialize(int argc, char** argv);
         ExitCode exec();
 
     protected:

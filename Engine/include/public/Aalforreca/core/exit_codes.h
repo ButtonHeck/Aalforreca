@@ -7,5 +7,6 @@ namespace Aalforreca
         SuccessExitCode = 0,
         WindowInitializationFailExitCode,
         ContextInitializationFailExitCode,
+        FileIOFailExitCode
     };
 }

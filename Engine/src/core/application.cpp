@@ -1,6 +1,7 @@
 #include "Aalforreca/alrcpch.h"
 #include "Aalforreca/core/application.h"
 #include "Aalforreca/core/window_manager.h"
+#include "Aalforreca/core/config_manager.h"
 #include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/exit_codes.h"
@@ -29,7 +30,7 @@ namespace Aalforreca
         ALRC_CORE_INFO("Core shutdown...");
     }
 
-    ExitCode Application::initialize()
+    ExitCode Application::initialize(int argc, char** argv)
     {
         if (_coreInitialized)
         {
@@ -37,9 +38,21 @@ namespace Aalforreca
             return SuccessExitCode;
         }
 
-        auto exitCode = initializeRoot();
+        Log::initialize();
+        ALRC_CORE_INFO("Core inititialize...");
+
+        auto exitCode = _configManager->initialize(argv[0]);
         if (exitCode != SuccessExitCode)
             return exitCode;
+
+        exitCode = _windowManager->initialize();
+        if (exitCode != SuccessExitCode)
+            return exitCode;
+
+        Shared<Config> rootConfig = _configManager->rootConfig();
+//        _configManager->beginGroup("WindowManager");
+//        _windowManager->loadSettings();
+//        _configManager->endGroup();
 
         ALRC_CORE_INFO("Aalforreca engine {}.{}", versionMajor(), versionMinor());
 
