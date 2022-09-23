@@ -2,6 +2,7 @@
 #include "Aalforreca/core/application.h"
 #include "Aalforreca/core/window_manager.h"
 #include "Aalforreca/core/config_manager.h"
+#include "Aalforreca/core/config.h"
 #include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"
 #include "Aalforreca/core/exit_codes.h"
@@ -50,9 +51,14 @@ namespace Aalforreca
             return exitCode;
 
         Shared<Config> rootConfig = _configManager->rootConfig();
-//        _configManager->beginGroup("WindowManager");
-//        _windowManager->loadSettings();
-//        _configManager->endGroup();
+        rootConfig->beginGroup("WindowManager");
+
+        //todo: move to tests
+        rootConfig->setInt("Int", 0);
+        rootConfig->setFloat("Float", 1.9);
+        rootConfig->setString("String", "hello");
+
+        rootConfig->endGroup();
 
         ALRC_CORE_INFO("Aalforreca engine {}.{}", versionMajor(), versionMinor());
 

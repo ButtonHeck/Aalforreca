@@ -5,6 +5,7 @@
 namespace Aalforreca
 {
     YamlConfigImpl::YamlConfigImpl()
+        : _root(YAML::Node(YAML::NodeType::Sequence))
     {
     }
 
@@ -46,5 +47,18 @@ namespace Aalforreca
         }
 
         return SuccessExitCode;
+    }
+
+    void YamlConfigImpl::beginGroup(const std::string& name)
+    {
+        YAML::Node groupNode;
+        _groups.push(groupNode);
+        _root[name] = _groups.top();
+    }
+
+    void YamlConfigImpl::endGroup()
+    {
+        const auto node = _groups.top();
+        _groups.pop();
     }
 }

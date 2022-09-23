@@ -23,6 +23,16 @@ namespace Aalforreca
         return _impl->loadSettings(file);
     }
 
+    void Config::beginGroup(const std::string& name)
+    {
+        _impl->beginGroup(name);
+    }
+
+    void Config::endGroup()
+    {
+        _impl->endGroup();
+    }
+
     bool Config::getBool(const std::string& name, bool defaultValue) const
     {
         return _impl->get<bool>(name, defaultValue);

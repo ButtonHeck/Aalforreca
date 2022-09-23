@@ -16,6 +16,9 @@ namespace Aalforreca
         ExitCode saveSettings(const std::string& file);
         ExitCode loadSettings(const std::string& file);
 
+        void beginGroup(const std::string& name);
+        void endGroup();
+
         bool getBool(const std::string& name, bool defaultValue) const;
         void setBool(const std::string& name, bool value);
 
