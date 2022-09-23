@@ -22,22 +22,34 @@ namespace Aalforreca
         template<typename ValueType>
         ValueType get(const std::string& name, ValueType defaultValue)
         {
-            auto currentNode = _groups.top();
-            if (!currentNode[name])
-                currentNode[name] = defaultValue;
+            if (!_currentNode)
+                return defaultValue;
 
-            return currentNode[name].as<ValueType>(defaultValue);
+            if (!(*_currentNode)[name])
+                (*_currentNode)[name] = defaultValue;
+
+            return (*_currentNode)[name].as<ValueType>(defaultValue);
         }
 
         template<typename ValueType>
         void set(const std::string& name, ValueType value)
         {
-            auto currentNode = _groups.top();
-            currentNode[name] = value;
+            if (!_currentNode)
+                return;
+
+            (*_currentNode)[name] = value;
         }
 
     private:
+        struct ConfigNode
+        {
+            std::string name;
+            YAML::Node node;
+        };
+
+    private:
         YAML::Node _root;
-        std::stack<YAML::Node> _groups;
+        YAML::Node* _currentNode;
+        std::stack<ConfigNode> _groups;
     };
 }

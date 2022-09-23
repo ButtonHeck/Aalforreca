@@ -9,6 +9,7 @@ struct GLFWwindow;
 namespace Aalforreca
 {
     class Window;
+    class Config;
 
     class WindowManager : public Singleton<WindowManager>
     {
@@ -17,6 +18,9 @@ namespace Aalforreca
         ~WindowManager();
 
         ExitCode initialize();
+
+        void saveSettings(Shared<Config> config);
+        void loadSettings(Shared<Config> config);
 
         Unique<Window> createWindow();
         void destroyWindow(GLFWwindow* window);

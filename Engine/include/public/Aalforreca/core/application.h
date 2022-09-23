@@ -32,12 +32,13 @@ namespace Aalforreca
     private:
         void onEvent(Event& event);
         bool onWindowClose(WindowCloseEvent& event);
+        void loadSettings();
 
     protected:
         Unique<Window> _window;
 
     private:
-        bool _coreInitialized;
+        bool _initialized;
         bool _running;
     };
 

@@ -6,6 +6,7 @@ namespace Aalforreca
 {
     YamlConfigImpl::YamlConfigImpl()
         : _root(YAML::Node(YAML::NodeType::Sequence))
+        , _currentNode(&_root)
     {
     }
 
@@ -42,8 +43,8 @@ namespace Aalforreca
         }
         catch (YAML::ParserException exception)
         {
-            ALRC_CORE_ERROR("Failed to load settings from \"{}\", message: {}, loading defaults...", file, exception.what());
-            return SuccessExitCode; //todo: change code
+            ALRC_CORE_ERROR("Failed to load settings from \"{}\", message: {}", file, exception.what());
+            return FileIOFailExitCode;
         }
 
         return SuccessExitCode;
@@ -51,14 +52,23 @@ namespace Aalforreca
 
     void YamlConfigImpl::beginGroup(const std::string& name)
     {
-        YAML::Node groupNode;
-        _groups.push(groupNode);
-        _root[name] = _groups.top();
+        YAML::Node groupNode = _root[name] ? _root[name] : YAML::Node(YAML::NodeType::Sequence);
+        _groups.push({name, groupNode});
+        _currentNode = &_groups.top().node;
     }
 
     void YamlConfigImpl::endGroup()
     {
-        const auto node = _groups.top();
-        _groups.pop();
+        if (_groups.empty())
+        {
+            _currentNode = &_root;
+        }
+        else
+        {
+            const auto completedConfigNode = _groups.top();
+            _root[completedConfigNode.name] = completedConfigNode.node;
+            _groups.pop();
+            _currentNode = &_groups.top().node;
+        }
     }
 }

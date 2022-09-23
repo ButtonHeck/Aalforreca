@@ -2,10 +2,11 @@
 
 #include "Aalforreca/core/exit_codes.h"
 #include "Aalforreca/core/singleton.h"
-#include "Aalforreca/core/config.h"
 
 namespace Aalforreca
 {
+    class Config;
+
     class ConfigManager : public Singleton<ConfigManager>
     {
     public:

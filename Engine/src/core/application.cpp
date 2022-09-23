@@ -33,7 +33,7 @@ namespace Aalforreca
 
     ExitCode Application::initialize(int argc, char** argv)
     {
-        if (_coreInitialized)
+        if (_initialized)
         {
             ALRC_CORE_WARN("Core is already initialized!");
             return SuccessExitCode;
@@ -50,15 +50,7 @@ namespace Aalforreca
         if (exitCode != SuccessExitCode)
             return exitCode;
 
-        Shared<Config> rootConfig = _configManager->rootConfig();
-        rootConfig->beginGroup("WindowManager");
-
-        //todo: move to tests
-        rootConfig->setInt("Int", 0);
-        rootConfig->setFloat("Float", 1.9);
-        rootConfig->setString("String", "hello");
-
-        rootConfig->endGroup();
+        loadSettings();
 
         ALRC_CORE_INFO("Aalforreca engine {}.{}", versionMajor(), versionMinor());
 
@@ -66,7 +58,7 @@ namespace Aalforreca
         _window->setEventCallback(ALRC_BIND_EVENT_FUNCTION(Application::onEvent));
 
         _running = true;
-        _coreInitialized = true;
+        _initialized = true;
 
         return initializeClient();
     }
@@ -96,5 +88,13 @@ namespace Aalforreca
     {
         _running = false;
         return true;
+    }
+
+    void Application::loadSettings()
+    {
+        Shared<Config> config = _configManager->rootConfig();
+        config->beginGroup("WindowManager");
+        _windowManager->loadSettings(config);
+        config->endGroup();
     }
 }

@@ -63,9 +63,10 @@ namespace Aalforreca
         if (!std::filesystem::exists(_configPath))
         {
             ALRC_CORE_WARN("\"{}\" does not exist, creating one...", _configPath);
-            return SuccessExitCode; //todo: change code
+            std::ofstream out(_configPath);
+            out.close();
         }
-        else
-            return _rootConfig->loadSettings(_configPath);
+
+        return _rootConfig->loadSettings(_configPath);
     }
 }

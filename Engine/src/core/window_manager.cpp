@@ -2,6 +2,8 @@
 #include "Aalforreca/core/window_manager.h"
 #include "Aalforreca/core/window.h"
 #include "Aalforreca/core/log.h"
+#include "Aalforreca/core/config.h"
+#include "Aalforreca/core/helper_macros.h"
 
 #include <GLFW/glfw3.h>
 
@@ -33,6 +35,16 @@ namespace Aalforreca
         }
 
         return SuccessExitCode;
+    }
+
+    void WindowManager::saveSettings(Shared<Config> config)
+    {
+        ALRC_UNUSED(config);
+    }
+
+    void WindowManager::loadSettings(Shared<Config> config)
+    {
+        ALRC_UNUSED(config);
     }
 
     Unique<Window> WindowManager::createWindow()
